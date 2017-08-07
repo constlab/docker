@@ -11,7 +11,7 @@ PHP development environment for Docker.
 
 ## Install
 
-* Clone this repo in your project: `git clone https://github.com/constlab/docker.git .docker`
+* Clone this repo in your project: `git clone https://github.com/constlab/docker.git .docker` or add as submodule `git submodule add https://github.com/constlab/docker.git .docker`
 * Copy cmd file in current folder: `cp .docker/docker .`
 * In project folder must be env file with params: APP_NAME, DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PREFIX
 * If env file does not exists, copy it: `cp .docker/env.example .env`
