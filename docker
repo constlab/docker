@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+
+source ./.env
+
+SERVICE_NAME="php"
+USER_NAME="constlab" # no root user
+DOCKER_COMPOSE_FILE=".docker/docker-compose.yml"
+
+if [[ $# -eq 0 ]]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} up -d $@
+elif [ $1 = 'restart' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} stop && docker-compose -f ${DOCKER_COMPOSE_FILE} up -d $@
+elif [ $1 = 'stop' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} stop
+elif [ $1 = 'exec' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} exec --user=${USER_NAME} ${SERVICE_NAME} bash  -ci "${*:2}"
+elif [ $1 = 'bash' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} exec --user=${USER_NAME} ${SERVICE_NAME} bash
+elif [ $1 = 'build' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} build "${@:2}" --no-cache
+elif [ $1 = 'rebuild' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} build --no-cache
+elif [ $1 = 'wp' ]; then
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} exec --user=${USER_NAME} ${SERVICE_NAME} wp "${*:2}"
+else
+  docker-compose --project-name ${APP_NAME} -f ${DOCKER_COMPOSE_FILE} up -d $@
+fi
