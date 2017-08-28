@@ -20,6 +20,7 @@ services:
     volumes:
       - ../:/var/www/html
       - ./php-fpm/php.ini:/usr/local/etc/php/php.ini
+      - ~/.composer/auth.json:/var/www/.composer/auth.json
     tty: true
 
   nginx:
