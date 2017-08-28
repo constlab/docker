@@ -40,7 +40,7 @@ RUN chown -R www-data:www-data /var/www/.composer
 USER root
 RUN apt-get clean && \
     apt-get autoremove -y \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /var/www/html
 
