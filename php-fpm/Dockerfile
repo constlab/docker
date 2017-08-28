@@ -16,9 +16,7 @@ RUN apt-get update && apt-get install -y \
     build-essential \
     mysql-client \
 	&& docker-php-ext-configure gd --with-png-dir=/usr --with-jpeg-dir=/usr \
-	&& docker-php-ext-install intl mbstring gd mysqli pdo_mysql opcache zip \
-	&& apt-get autoremove -y \
-    && rm -r /var/lib/apt/lists/*
+	&& docker-php-ext-install intl mbstring gd mysqli pdo_mysql opcache zip
 
 RUN pecl install apcu && docker-php-ext-enable apcu
 
@@ -41,6 +39,7 @@ RUN chown -R www-data:www-data /var/www/.composer
 # Clean up
 USER root
 RUN apt-get clean && \
+    && apt-get autoremove -y \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /var/www/html
