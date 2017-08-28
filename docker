@@ -3,7 +3,7 @@
 source ./.env
 
 SERVICE_NAME="php"
-USER_NAME="constlab" # no root user
+USER_NAME="www-data" # no root user
 DOCKER_COMPOSE_FILE=".docker/docker-compose.yml"
 
 if [[ $# -eq 0 ]]; then

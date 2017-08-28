@@ -11,6 +11,7 @@ RUN apt-get update && apt-get install -y \
     zip \
     unzip \
     wget \
+    nano \
     openssh-client \
     build-essential \
     mysql-client \
@@ -31,7 +32,16 @@ RUN /install-wp-cli && rm /install-wp-cli
 
 ARG PUID=1000
 ARG PGID=1000
-RUN groupadd -g ${PGID} constlab && useradd -u ${PUID} -g constlab -m constlab
+
+RUN usermod -u 1000 www-data
+
+COPY ./composer.json /var/www/.composer/composer.json
+RUN chown -R www-data:www-data /var/www/.composer
+
+# Clean up
+USER root
+RUN apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 WORKDIR /var/www/html
 
