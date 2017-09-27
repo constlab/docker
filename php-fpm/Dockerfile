@@ -36,6 +36,10 @@ RUN usermod -u 1000 www-data
 COPY ./composer.json /var/www/.composer/composer.json
 RUN chown -R www-data:www-data /var/www/.composer
 
+RUN touch /var/www/.bashrc && chown -R www-data:www-data /var/www/.bashrc
+USER www-data
+RUN echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
+
 # Clean up
 USER root
 RUN apt-get clean && \
