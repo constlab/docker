@@ -1,6 +1,8 @@
 FROM php:7.0-fpm
 MAINTAINER Ivan Kalinichenko <kalinichenko@constlab.ru>
 
+ARG INSTALL_NODEJS=true
+
 # Install soft
 RUN apt-get update && apt-get install -y \
     libpng12-dev \
@@ -27,6 +29,13 @@ RUN /install-composer && rm /install-composer
 # Install wp cli
 COPY install-wp-cli /install-wp-cli
 RUN /install-wp-cli && rm /install-wp-cli
+
+# Install nodejs and gulp cli
+RUN if [ ${INSTALL_NODEJS} = true ];  then \
+    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    apt-get install -y nodejs && \
+    npm install gulp-cli -g \
+;fi
 
 ARG PUID=1000
 ARG PGID=1000

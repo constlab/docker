@@ -8,6 +8,8 @@ PHP development environment for Docker.
 * MySql
 * Composer
 * WP CLI
+* Nodejs (optionnal)
+* Gulp CLI (optionnal)
 
 ## Install
 

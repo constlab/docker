@@ -14,7 +14,10 @@ services:
       MYSQL_PASSWORD: ${DB_PASSWORD}
 
   php:
-    build: ./php-fpm
+    build:
+      context: ./php-fpm
+      args:
+        - INSTALL_NODEJS=${DOCKER_INSTALL_NODEJS}
     depends_on:
       - db
     volumes:
