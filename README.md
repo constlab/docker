@@ -2,7 +2,7 @@
 
 PHP development environment for Docker.
 
-* PHP 7.0
+* PHP 7.1
 * Nginx
 * php-fpm
 * MySql
