@@ -38,11 +38,6 @@ RUN if [ ${INSTALL_NODEJS} = true ];  then \
     npm install gulp-cli -g \
 ;fi
 
-# Install envoy
-RUN if [ ${INSTALL_ENVOY} = true ];  then \
-    composer global require "laravel/envoy=~1.0" \
-;fi
-
 ARG PUID=1000
 ARG PGID=1000
 
@@ -54,6 +49,11 @@ RUN chown -R www-data:www-data /var/www/.composer
 RUN touch /var/www/.bashrc && chown -R www-data:www-data /var/www/.bashrc
 USER www-data
 RUN echo 'export PATH="$PATH:$HOME/.composer/vendor/bin"' >> ~/.bashrc
+
+# Install envoy
+RUN if [ ${INSTALL_ENVOY} = true ];  then \
+    composer global require "laravel/envoy=~1.0" \
+;fi
 
 # Clean up
 USER root
