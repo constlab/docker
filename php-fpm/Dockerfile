@@ -40,7 +40,7 @@ RUN if [ ${INSTALL_NODEJS} = true ];  then \
 
 # Install envoy
 RUN if [ ${INSTALL_ENVOY} = true ];  then \
-    composer global require "laravel/envoy=~1.0"
+    composer global require "laravel/envoy=~1.0" \
 ;fi
 
 ARG PUID=1000
