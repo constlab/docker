@@ -2,6 +2,7 @@ FROM php:7.1-fpm
 MAINTAINER Ivan Kalinichenko <kalinichenko@constlab.ru>
 
 ARG INSTALL_NODEJS=true
+ARG INSTALL_ENVOY=false
 
 # Install soft
 RUN apt-get update && apt-get install -y \
@@ -35,6 +36,11 @@ RUN if [ ${INSTALL_NODEJS} = true ];  then \
     curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
     apt-get install -y nodejs && \
     npm install gulp-cli -g \
+;fi
+
+# Install envoy
+RUN if [ ${INSTALL_ENVOY} = true ];  then \
+    composer global require "laravel/envoy=~1.0"
 ;fi
 
 ARG PUID=1000

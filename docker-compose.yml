@@ -18,6 +18,7 @@ services:
       context: ./php-fpm
       args:
         - INSTALL_NODEJS=${DOCKER_INSTALL_NODEJS}
+        - INSTALL_ENVOY=${DOCKER_INSTALL_ENVOY}
     depends_on:
       - db
     volumes:

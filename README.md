@@ -10,6 +10,7 @@ PHP development environment for Docker.
 * WP CLI
 * Nodejs (optionnal)
 * Gulp CLI (optionnal)
+* Envoy (optionnal)
 
 ## Install
 
