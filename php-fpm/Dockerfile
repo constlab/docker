@@ -33,7 +33,7 @@ RUN /install-wp-cli && rm /install-wp-cli
 
 # Install nodejs and gulp cli
 RUN if [ ${INSTALL_NODEJS} = true ];  then \
-    curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+    curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
     apt-get install -y nodejs && \
     npm install gulp-cli -g \
 ;fi
