@@ -37,8 +37,8 @@ RUN if [ ${INSTALL_NODEJS} = true ];  then \
     apt-get install -y nodejs && \
     npm install gulp-cli -g \
     mkdir /var/www/.config \
-    chown -R www-data:www-data /var/www/.config
-    npm install npm -g
+    chown -R www-data:www-data /var/www/.config \
+    npm install npm -g \
 ;fi
 
 ARG PUID=1000
