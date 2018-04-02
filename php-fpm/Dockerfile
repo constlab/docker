@@ -36,6 +36,9 @@ RUN if [ ${INSTALL_NODEJS} = true ];  then \
     curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
     apt-get install -y nodejs && \
     npm install gulp-cli -g \
+    mkdir /var/www/.config \
+    chown -R www-data:www-data /var/www/.config
+    npm install npm -g
 ;fi
 
 ARG PUID=1000
