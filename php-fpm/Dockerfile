@@ -2,7 +2,7 @@ FROM php:7.1-fpm
 MAINTAINER Ivan Kalinichenko <kalinichenko@constlab.ru>
 
 ARG INSTALL_NODEJS=true
-ARG INSTALL_ENVOY=false
+ARG INSTALL_ENVOY=true
 
 # Install soft
 RUN apt-get update && apt-get install -y \
