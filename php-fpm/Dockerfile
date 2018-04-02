@@ -23,6 +23,11 @@ RUN apt-get update && apt-get install -y \
 
 RUN pecl install apcu && docker-php-ext-enable apcu
 
+ARG PUID=1000
+ARG PGID=1000
+
+RUN usermod -u 1000 www-data
+
 # Install composer
 COPY install-composer /install-composer
 RUN /install-composer && rm /install-composer
@@ -35,16 +40,11 @@ RUN /install-wp-cli && rm /install-wp-cli
 RUN if [ ${INSTALL_NODEJS} = true ];  then \
     curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
     apt-get install -y nodejs && \
-    npm install gulp-cli -g \
-    mkdir /var/www/.config \
-    chown -R www-data:www-data /var/www/.config \
+    npm install gulp-cli -g && \
+    mkdir /var/www/.config && \
+    chown -R www-data:www-data /var/www/.config && \
     npm install npm -g \
 ;fi
-
-ARG PUID=1000
-ARG PGID=1000
-
-RUN usermod -u 1000 www-data
 
 COPY ./composer.json /var/www/.composer/composer.json
 RUN chown -R www-data:www-data /var/www/.composer
