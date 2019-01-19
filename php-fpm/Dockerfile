@@ -6,7 +6,7 @@ ARG INSTALL_ENVOY=true
 
 # Install soft
 RUN apt-get update && apt-get install -y \
-    libpng12-dev \
+    libpng-dev \
     libjpeg-dev \
     libicu-dev \
     git \
